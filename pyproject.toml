@@ -1,0 +1,58 @@
+[project]
+name = "platform-services"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "jasonari", email = "jason.ari@outlook.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.141.1",
+    "pydantic-settings>=2.15.0",
+    "uvicorn>=0.53.0",
+]
+
+[project.scripts]
+platform-services = "platform_services:main"
+
+[build-system]
+requires = ["uv_build>=0.12.6,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "python-semantic-release>=10.6.2",
+    "ruff>=0.16.7",
+]
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+commit_parser = "conventional"
+tag_format = "v{version}"
+allow_zero_version = true
+major_on_zero = false
+build_command = "uv lock --upgrade-package platform-services"
+assets = ["uv.lock"]
+
+[tool.semantic_release.branches.main]
+match = "^main$"
+prerelease = false
+
+[tool.semantic_release.changelog.default_templates]
+changelog_file = "CHANGELOG.md"
+
+[tool.semantic_release.publish]
+upload_to_vcs_release = false
+
+[tool.ruff]
+line-length = 100
+indent-width = 4
+
+[tool.ruff.lint]
+extend-select = ["I"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
