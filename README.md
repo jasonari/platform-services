@@ -8,7 +8,7 @@
 
 ```powershell
 uv sync --locked
-uv run uvicorn main:app --app-dir src --reload
+uv run fastapi dev
 ```
 
 - 健康检查：<http://127.0.0.1:8000/health>，返回 `{"status":"ok"}`，仅表示应用可响应请求。
@@ -23,7 +23,9 @@ uv run uvicorn main:app --app-dir src --reload
 | `APP_NAME` | `platform-services` | API 文档中的应用名称 |
 | `LOG_LEVEL` | `INFO` | 应用日志级别，支持 `DEBUG`、`INFO`、`WARNING`、`ERROR`、`CRITICAL` |
 
-Uvicorn 自身的日志级别通过启动参数 `--log-level` 设置。
+开发启动默认开启热重载，端口可通过 `uv run fastapi dev --port 8080` 修改。
+
+不需要热重载时使用 `uv run fastapi run`，该命令默认监听 `0.0.0.0:8000`。
 
 ## 目录
 
